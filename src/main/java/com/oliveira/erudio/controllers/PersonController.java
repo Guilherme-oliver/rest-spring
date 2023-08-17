@@ -1,5 +1,5 @@
 package com.oliveira.erudio.controllers;
-import com.oliveira.erudio.model.Person;
+import com.oliveira.erudio.data.vo.v1.PersonVO;
 import com.oliveira.erudio.services.PersonService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,26 +18,26 @@ public class PersonController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         return personService.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id")Long id ) throws Exception {
+    public PersonVO findById(@PathVariable(value = "id")Long id ) throws Exception {
        return personService.findById(id);
     }
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody Person person) throws Exception {
+    public PersonVO create(@RequestBody PersonVO person) throws Exception {
         return personService.create(person);
     }
 
     @PutMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody Person person) throws Exception {
+    public PersonVO update(@RequestBody PersonVO person) throws Exception {
         return personService.update(person);
     }
 
