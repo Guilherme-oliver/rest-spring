@@ -1,18 +1,20 @@
-package com.oliveira.erudio.data.vo.v1;
+package com.oliveira.erudio.data.vo.v2;
 
+import java.util.Date;
 import java.util.Objects;
 
-public class PersonVO {
+public class PersonVOV2 {
 
     private Long id;
     private String firstName;
     private String lastName;
     private String address;
     private String gender;
+    private Date birthDay;
 
-    public PersonVO() {}
+    public PersonVOV2() {}
 
-    public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
+    public PersonVOV2(Long id, String firstName, String lastName, String address, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -60,15 +62,23 @@ public class PersonVO {
         this.gender = gender;
     }
 
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PersonVO personVO)) return false;
-        return Objects.equals(id, personVO.id) && Objects.equals(firstName, personVO.firstName) && Objects.equals(lastName, personVO.lastName) && Objects.equals(address, personVO.address) && Objects.equals(gender, personVO.gender);
+        if (!(o instanceof PersonVOV2 that)) return false;
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address, that.address) && Objects.equals(gender, that.gender) && Objects.equals(birthDay, that.birthDay);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, address, gender);
+        return Objects.hash(id, firstName, lastName, address, gender, birthDay);
     }
 }

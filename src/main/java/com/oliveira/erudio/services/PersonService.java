@@ -1,13 +1,14 @@
 package com.oliveira.erudio.services;
 
 import com.oliveira.erudio.data.vo.v1.PersonVO;
+import com.oliveira.erudio.data.vo.v2.PersonVOV2;
 import com.oliveira.erudio.exceptions.ResourceNotFoundException;
 import com.oliveira.erudio.mapper.DozerMapper;
+import com.oliveira.erudio.mapper.custom.PersonMapper;
 import com.oliveira.erudio.model.Person;
 import com.oliveira.erudio.repositories.PersonRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,8 +18,11 @@ public class PersonService {
     private Logger logger = Logger.getLogger(PersonService.class.getName());
 
     private PersonRepository personRepository;
-    public PersonService(PersonRepository personRepository) {
+    private PersonMapper personMapper;
+
+    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.personMapper = personMapper;
     }
 
     public List<PersonVO> findAll() {
@@ -37,6 +41,13 @@ public class PersonService {
         logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = DozerMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        return vo;
+    }
+
+    public PersonVOV2 createV2(PersonVOV2 person) {
+        logger.info("Creating one person with V2!");
+        var entity = personMapper.convertVoToEntity(person);
+        var vo = personMapper.convertEntityToVo(personRepository.save(entity));
         return vo;
     }
 

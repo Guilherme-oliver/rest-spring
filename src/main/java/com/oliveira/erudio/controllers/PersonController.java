@@ -1,5 +1,6 @@
 package com.oliveira.erudio.controllers;
 import com.oliveira.erudio.data.vo.v1.PersonVO;
+import com.oliveira.erudio.data.vo.v2.PersonVOV2;
 import com.oliveira.erudio.services.PersonService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +33,13 @@ public class PersonController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO create(@RequestBody PersonVO person) throws Exception {
         return personService.create(person);
+    }
+
+    @PostMapping(value = "/v2",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVOV2 createV2(@RequestBody PersonVOV2 person) throws Exception {
+        return personService.createV2(person);
     }
 
     @PutMapping(
