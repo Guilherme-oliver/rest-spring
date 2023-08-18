@@ -15,7 +15,7 @@ public class PersonVO {
 
     @JsonProperty("last_name")
     private String lastName;
-    
+
     private String address;
     private String gender;
 
