@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class SwaggerIntegrationTest extends AbstractIntegrationTest {
 
     @Test
-    public void contextLoads() {
+    public void shouldDisplaySwaggerUiPage() {
         var content =
             given()
                     .basePath("/swagger-ui/index.html")
