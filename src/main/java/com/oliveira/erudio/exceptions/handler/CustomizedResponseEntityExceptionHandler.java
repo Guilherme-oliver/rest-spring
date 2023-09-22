@@ -1,6 +1,7 @@
 package com.oliveira.erudio.exceptions.handler;
 
 import com.oliveira.erudio.exceptions.ExceptionResponse;
+import com.oliveira.erudio.exceptions.InvalidJwtAuthenticationException;
 import com.oliveira.erudio.exceptions.RequiredObjectIsNullException;
 import com.oliveira.erudio.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -45,5 +46,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidjwtAuthenticationException(
+            Exception ex, WebRequest request) {
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
     }
 }

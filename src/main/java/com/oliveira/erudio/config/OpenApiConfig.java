@@ -16,8 +16,8 @@ public class OpenApiConfig {
                         .title("RESTfull API with Java 17 and Spring Boot 3")
                         .version("v1")
                         .description("Description about your API")
-                        .termsOfService("http://pub.erudio.com.br")
+                        .termsOfService("http://pub.erudio.com.br/meus-cursos")
                         .license(new License().name("Apache 2.0")
-                                .url("http://pub.erudio.com.br")));
+                                .url("http://pub.erudio.com.br/meus-cursos")));
     }
 }

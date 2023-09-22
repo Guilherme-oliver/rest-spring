@@ -1,6 +1,7 @@
 package com.oliveira.erudio.config;
 
 import com.oliveira.erudio.serialization.converter.YamlJackson2HttpMessageConverter;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -26,12 +27,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-       var allowedOrigins = corsOriginPatterns.split(",");
-       registry.addMapping("/**")
-               //.allowedMethods("GET", "POST", "PUT");
-               .allowedMethods("*")
-               .allowedOrigins(allowedOrigins)
-               .allowCredentials(true);
+        var allowedOrigins = corsOriginPatterns.split(",");
+        registry.addMapping("/**")
+                //.allowedMethods("GET", "POST", "PUT")
+                .allowedMethods("*")
+                .allowedOrigins(allowedOrigins)
+                .allowCredentials(true);
     }
 
     @Override
